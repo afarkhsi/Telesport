@@ -7,11 +7,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { OlympicService } from './core/services/olympic.service';
 import { OlympicComponent } from "./olympic/olympic.component";
-import { CommonModule } from '@angular/common';  
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent, HomeComponent, OlympicComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, CommonModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgxChartsModule],
   providers: [OlympicService],
   bootstrap: [AppComponent],
 })

@@ -27,3 +27,16 @@
 
 
 <div>{{olympics.length}}</div>
+<!-- 
+<ngx-charts-bar-vertical [results]="olympics"></ngx-charts-bar-vertical> -->
+<ngx-charts-pie-chart
+  [view]="[700, 400]"
+  [results]="chartData"
+  [gradient]="true"
+  [legend]="true"
+  [explodeSlices]="false"
+  [doughnut]="false"
+  [labels]="true"
+  [gradient]="true"
+  [legendPosition]="legendPosition">
+</ngx-charts-pie-chart>
