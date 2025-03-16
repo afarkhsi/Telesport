@@ -5,9 +5,10 @@ import { CommonModule, UpperCasePipe } from '@angular/common';
 import { take } from 'rxjs';
 
 @Component({
-  selector: 'app-olympic',
-  templateUrl: './olympic.component.html',
-  styleUrl: './olympic.component.scss',
+    selector: 'app-olympic',
+    templateUrl: './olympic.component.html',
+    styleUrl: './olympic.component.scss',
+    standalone: false
 })
 
 export class OlympicComponent implements OnInit {
