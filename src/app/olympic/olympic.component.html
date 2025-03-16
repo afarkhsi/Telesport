@@ -1,42 +1,71 @@
-<!-- Affichage de l'état de chargement -->
-<div *ngIf="loading">Chargement des données...</div>
 
-<!-- Affichage de l'erreur -->
-<div *ngIf="error" class="error">
-  <p>{{ error }}</p>
-</div>
+<section class="wrapper">
+  <!-- Affichage de l'état de chargement -->
+  <div *ngIf="loading">Chargement des données...</div>
 
-<!-- Affichage des données quand elles sont chargées -->
-<div *ngIf="!loading && !error && olympics.length > 0">
-  <ul>
-    <li *ngFor="let olympic of olympics">
-      <h3>{{ olympic.country }}</h3>
-      <ul>
-        <li *ngFor="let participation of olympic.participations">
-          Dans la ville de : {{ participation.city }} en {{ participation.year }} avec un total de {{ participation.medalsCount }} medailles, pour {{ participation.athleteCount }} athlètes participant.
-        </li>
-      </ul>
-    </li>
-  </ul>
-</div>
+  <!-- Affichage de l'erreur -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </div>
 
-<!-- Message quand il n'y a pas de données -->
-<div *ngIf="!loading && !error && olympics.length === 0">
-  <p>Aucune donnée à afficher.</p>
-</div>
+  <!-- Affichage des données quand elles sont chargées -->
+  <div class="wrapper_contents">
+    <h1 class="wrapper_contents_title">Medals per country</h1>
+    <div class="wrapper_contents_subtitle-chart">
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Number of JOs</h2>
+        <span>{{chartData.length}}</span>
+      </div>
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Number of countries</h2>
+        <span>{{chartData.length}}</span>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- <div *ngIf="!loading && !error && olympics.length > 0">
+    <ul>
+      <li *ngFor="let olympic of olympics">
+        <h3>{{ olympic.country }}</h3>
+        <ul>
+          <li *ngFor="let participation of olympic.participations">
+            Dans la ville de : {{ participation.city }} en {{ participation.year }} avec un total de {{ participation.medalsCount }} medailles, pour {{ participation.athleteCount }} athlètes participant.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div> -->
+
+  <!-- Message quand il n'y a pas de données -->
+  <div *ngIf="!loading && !error && olympics.length === 0">
+    <p>Aucune donnée à afficher.</p>
+  </div>
 
 
-<div>{{olympics.length}}</div>
-<!-- 
-<ngx-charts-bar-vertical [results]="olympics"></ngx-charts-bar-vertical> -->
-<ngx-charts-pie-chart
-  [view]="[700, 400]"
-  [results]="chartData"
-  [gradient]="true"
-  [legend]="true"
-  [explodeSlices]="false"
-  [doughnut]="false"
-  [labels]="true"
-  [gradient]="true"
-  [legendPosition]="legendPosition">
-</ngx-charts-pie-chart>
+  <!-- <div *ngIf="tooltipVisible" class="custom-tooltip" [style.top.px]="tooltipPosition?.top" [style.left.px]="tooltipPosition?.left">
+    <div><strong>{{ selectedItem.name }}</strong></div>
+    <div>{{ selectedItem.value | number }}</div>
+  </div> -->
+
+  <div *ngIf="tooltipVisible" class="custom-tooltip" [style.top.px]="tooltipPosition?.top" [style.left.px]="tooltipPosition?.left">
+    <div>{{ tooltipData?.name }}</div>
+    <div class="icon">{{ tooltipData?.value | number }}</div>
+  </div>
+
+  <div class="wrapper_chart">
+    <ngx-charts-pie-chart
+      [view]="[800, 400]"
+      [results]="chartData"
+      [gradient]="false"
+      [legend]="false"
+      [explodeSlices]="false"
+      [doughnut]="false"
+      [labels]="true"
+      [gradient]="true"
+      [tooltipDisabled]="true"
+      (activate)="onActivate($event)"
+      (deactivate)="onDeactivate()"
+      (mousemove)="onMouseMove($event)">
+    </ngx-charts-pie-chart>
+  </div>
+</section>

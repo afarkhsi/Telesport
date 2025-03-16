@@ -1,0 +1,80 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_contents_title{
+        text-align: center;
+        background-color: #04838f;
+        border-radius: 10px;
+        color: white;
+        padding: 10px 0px;
+        font-weight: 400;
+    }
+    &_contents_subtitle-chart{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        text-align: center;
+        &_details{
+            border: 3px solid #04838f;
+            padding: 5px;
+            border-radius: 10px;
+            h2{
+                font-size: 15px;
+                text-wrap: wrap;
+                font-weight: 400;
+                margin: 5px 0px 5px 0px;
+            }
+            span{
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.custom-tooltip {
+    position: absolute;
+    background-color: #04838f;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    font-size: 14px;
+    z-index: 10;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+.custom-tooltip div {
+    margin-bottom: 5px;
+}
+  
+.custom-tooltip div::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #178693 transparent transparent transparent;
+}
+.icon {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 1px;
+}
+
+.icon::before {
+    content: "🏅"; /* Icône clé pour simuler la médaille */
+    font-size: 16px;
+}
+
+.chart{
+width: 100%;
+}

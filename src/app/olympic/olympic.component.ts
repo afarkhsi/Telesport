@@ -23,6 +23,9 @@ export class OlympicComponent implements OnInit {
   loading: boolean = false;
   error: string = '';
   legendPosition: LegendPosition = LegendPosition.Below;
+  tooltipPosition: { top: number, left: number } | null = null;
+  tooltipVisible = false;
+  tooltipData: any;
 
   // Tableau ayant pour résultat les données traitées et récupérées
   chartData: CountryMedals[] = [];
@@ -56,7 +59,47 @@ export class OlympicComponent implements OnInit {
         this.countryMedalsData();
       }
     );
-  } 
+  }
+  
+  
+  // Méthode appelée lors de l'activation d'un élément (lorsqu'on survole)
+  // Capture la position du tooltip
+  onActivate(event: any): void {
+    this.tooltipVisible = true;
+    this.tooltipData = event.series;
+    // console.log('event:', event)
+
+    // Vérifie la structure de l'objet `event` et récupère les coordonnées correctement
+    if (event && event.entries && event.entries.length > 0) {
+      const item = event.entries[0];  // On prend le premier élément (devrait être un seul)
+      this.tooltipData = item;  // 'value' contient les données du segment (name, value)
+    }
+  
+    // Récupère la position de l'événement pour le tooltip
+    if (event && event.event) {
+      this.tooltipPosition = {
+        top: event.event.offsetY,
+        left: event.event.offsetX
+      };
+    }
+
+    // console.log('totltip:', this.tooltipData)
+
+  }
+
+  // Cacher le tooltip lorsqu'on quitte l'élément
+  onDeactivate(): void {
+    this.tooltipVisible = false;
+  }
+
+  onMouseMove(event: MouseEvent): void {
+    if (this.tooltipVisible) {
+      this.tooltipPosition = {
+        top: event.clientY - 70,  // Décalage de 10px vers le bas
+        left: event.clientX - 40  // Décalage de 10px vers la droite
+      };
+    }
+  }
 }
 
 
