@@ -23,18 +23,6 @@
     </div>
   </div>
  
-  <!-- <div *ngIf="!loading && !error && olympics.length > 0">
-    <ul>
-      <li *ngFor="let olympic of olympics">
-        <h3>{{ olympic.country }}</h3>
-        <ul>
-          <li *ngFor="let participation of olympic.participations">
-            Dans la ville de : {{ participation.city }} en {{ participation.year }} avec un total de {{ participation.medalsCount }} medailles, pour {{ participation.athleteCount }} athlètes participant.
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div> -->
 
   <!-- Message quand il n'y a pas de données -->
   <div *ngIf="!loading && !error && olympics.length === 0">

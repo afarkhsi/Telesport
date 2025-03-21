@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { OlympicService } from '../core/services/olympic.service';
 import { Olympic } from '../core/models/Olympic';
-import { CommonModule, UpperCasePipe } from '@angular/common';
 import { take } from 'rxjs';
 import { LegendPosition } from '@swimlane/ngx-charts';
+import { CountryMedals } from '../core/models/CountryMedals';
 
 
-interface CountryMedals {
-  name: string;
-  value: number;
-}
 @Component({
     selector: 'app-olympic',
     templateUrl: './olympic.component.html',

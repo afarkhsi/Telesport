@@ -9,11 +9,13 @@ import { OlympicService } from './core/services/olympic.service';
 import { OlympicComponent } from "./olympic/olympic.component";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CountryPageComponent } from './pages/country-page/country-page.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, HomeComponent, OlympicComponent, CountryPageComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgxChartsModule],
-  providers: [OlympicService],
+  declarations: [AppComponent, NotFoundComponent, HomeComponent, OlympicComponent, LineChartComponent, CountryPageComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgxChartsModule, BrowserAnimationsModule],
+  providers: [OlympicService, provideAnimations()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

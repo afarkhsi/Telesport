@@ -10,10 +10,16 @@ example of participation:
 }
 */
 
+export interface SeriesData {
+  name: string;  // Année sous forme de string
+  value: number; // Nombre de médailles
+}
 export interface Participation {
   id: number;
   year: number;
   city: string;
   medalsCount: number;
   athleteCount: number;
+  name: string
+  series: SeriesData[];
 }
