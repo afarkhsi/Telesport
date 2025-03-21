@@ -13,10 +13,10 @@ export class AppComponent implements OnInit {
   constructor(private olympicService: OlympicService) {}
 
   ngOnInit(): void {
-    this.olympicService.loadInitialData().pipe(take(1)).subscribe(
-      (olympics) => {
-        console.log('Valeur actuelle des olympics depuis appcomponent:', olympics); // Affiche la valeur dans la console
-      }
-    );
+    // this.olympicService.loadInitialData().pipe(take(1)).subscribe(
+    //   (olympics) => {
+    //     console.log('Valeur actuelle des olympics depuis appcomponent:', olympics); // Affiche la valeur dans la console
+    //   }
+    // );
   }
 }

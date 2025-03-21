@@ -51,7 +51,7 @@ export class OlympicComponent implements OnInit {
       this.error = error;  // Met à jour le message d'erreur
     });
 
-    this.olympicService.loadInitialData().pipe(take(1)).subscribe(
+    this.olympicService!.loadInitialData().pipe(take(1)).subscribe(
       (data) => {
         this.olympics = data ;  // Si tout se passe bien, on met les données dans la variable 
         //olympics

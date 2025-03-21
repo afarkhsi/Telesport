@@ -8,9 +8,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { OlympicService } from './core/services/olympic.service';
 import { OlympicComponent } from "./olympic/olympic.component";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { CountryPageComponent } from './pages/country-page/country-page.component';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, HomeComponent, OlympicComponent],
+  declarations: [AppComponent, NotFoundComponent, HomeComponent, OlympicComponent, CountryPageComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgxChartsModule],
   providers: [OlympicService],
   bootstrap: [AppComponent],

@@ -1,0 +1,11 @@
+<div>
+    <h1>L'id de ce pays est le : {{ olympicId }}</h1>
+    <div *ngIf="olympic$.length > 0">
+      <h2> {{ olympic$[0].country}} </h2>
+        <ul>
+          <li *ngFor="let participation of olympic$[0].participations">
+            {{ participation.id }}, {{ participation.year }}, {{ participation.city }}, {{ participation.medalsCount }},  {{ participation.athleteCount }}
+          </li>
+        </ul>
+      </div>
+  </div>
