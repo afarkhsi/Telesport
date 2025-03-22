@@ -11,23 +11,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   templateUrl: './line-chart.component.html',
   styleUrl: './line-chart.component.scss',
   standalone: false,
-  animations: [
-    trigger('animationState', [
-      state('inactive', style({
-        opacity: 0
-      })),
-      state('active', style({
-        opacity: 1
-      })),
-      transition('inactive => active', [
-        animate('0.5s')
-      ]),
-      transition('active => inactive', [
-        animate('0.5s')
-      ])
-    ])
-  ]
 })
+
 export class LineChartComponent implements OnInit {
   loading: boolean = false;
   error: string = '';
@@ -42,6 +27,48 @@ export class LineChartComponent implements OnInit {
 
     // Tableau ayant pour résultat les données traitées et récupérées
   chartData: Partial <Participation>[] = [];
+
+  chateData = [
+    {
+      name: 'medailles', // Nom de la ville
+      series: [
+        { 
+          name: '2016', 
+          value: 28 
+        },
+        { 
+          name: '2012', 
+          value: 30 
+        },
+        { 
+          name: '2020', 
+          value: 34 
+        }
+
+         // Données pour cette année
+      ]
+    },
+    {
+      name: 'Paris', // Nom de la ville
+      series: [
+        { 
+          name: '2016', 
+          value: 8 
+        },
+        { 
+          name: '2012', 
+          value: 90 
+        },
+        { 
+          name: '2020', 
+          value: 44 
+        }
+         // Données pour cette année
+      ]
+    }
+  ];
+
+  
 
   // participationData(): void {
   //   this.chartData = this.olympics.map(country => {
@@ -95,16 +122,18 @@ export class LineChartComponent implements OnInit {
         this.isLoading = false;
 
         //Traitement des données pour les ajouter au tableau des participation pour notre chart
-        this.chartData = this.olympic$[0].participations.map(participation => ({
-          name: participation.city, // Ou tout autre nom pertinent pour la série
-          series: [
-            {
+        this.chartData = [
+          {
+            name: 'Médailles', // Nom de la courbe
+            series: this.olympic$[0].participations.map(participation => ({
               name: participation.year.toString(), // X-axis (Année)
               value: participation.medalsCount    // Y-axis (Nombre de médailles)
-            }
-          ]
-        }));
+            }))
+          }
+        ];
         console.log("Tableau partcipation du pays:", this.chartData);
+
+        console.log("V2:", this.chateData);
       },
     });
   }

@@ -9,11 +9,6 @@ example of participation:
     athleteCount: 372
 }
 */
-
-export interface SeriesData {
-  name: string;  // Année sous forme de string
-  value: number; // Nombre de médailles
-}
 export interface Participation {
   id: number;
   year: number;
@@ -22,4 +17,9 @@ export interface Participation {
   athleteCount: number;
   name: string
   series: SeriesData[];
+}
+
+export interface SeriesData {
+  name: string;  // Année sous forme de string
+  value: number; // Nombre de médailles
 }

@@ -4,6 +4,7 @@ import { Olympic } from '../core/models/Olympic';
 import { take } from 'rxjs';
 import { LegendPosition } from '@swimlane/ngx-charts';
 import { CountryMedals } from '../core/models/CountryMedals';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -31,12 +32,17 @@ export class OlympicComponent implements OnInit {
     this.chartData = this.olympics.map(country => {
       // Somme des médailles par pays
       const totalMedals = country.participations.reduce((sum, participation) => sum + participation.medalsCount, 0);
-      return { name: country.country, value: totalMedals };
+      return { name: country.country, value: totalMedals, extra: {id: country.id} };
     });
     console.log("Nombre de medails par pays:", this.chartData);
+    this.chartData = this.chartData.filter(country => !isNaN(country.value));
+
   }
 
-  constructor(private olympicService: OlympicService){}
+  constructor(
+    private olympicService: OlympicService,
+    private router: Router
+  ){}
 
   ngOnInit(): void {
     this.olympicService.getLoadingState().subscribe((loading) => {
@@ -94,6 +100,16 @@ export class OlympicComponent implements OnInit {
         top: event.clientY - 70,  // Décalage de 10px vers le bas
         left: event.clientX - 40  // Décalage de 10px vers la droite
       };
+    }
+  }
+
+  onClickCountry(event: { name: string; value: number; extra: { id: number } }): void {
+    console.log("Événement sélectionné :", event);
+    
+    if (event && event.extra && event.extra.id) {
+      this.router.navigateByUrl(`/country/${event.extra.id}`);
+    } else {
+      throw new Error("ID du pays non défini")
     }
   }
 }
