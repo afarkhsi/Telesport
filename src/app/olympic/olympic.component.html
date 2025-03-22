@@ -30,11 +30,6 @@
   </div>
 
 
-  <!-- <div *ngIf="tooltipVisible" class="custom-tooltip" [style.top.px]="tooltipPosition?.top" [style.left.px]="tooltipPosition?.left">
-    <div><strong>{{ selectedItem.name }}</strong></div>
-    <div>{{ selectedItem.value | number }}</div>
-  </div> -->
-
   <div *ngIf="tooltipVisible" class="custom-tooltip" [style.top.px]="tooltipPosition?.top" [style.left.px]="tooltipPosition?.left">
     <div>{{ tooltipData?.name }}</div>
     <div class="icon">{{ tooltipData?.value | number }}</div>

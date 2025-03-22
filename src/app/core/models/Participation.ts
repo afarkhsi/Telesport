@@ -15,11 +15,13 @@ export interface Participation {
   city: string;
   medalsCount: number;
   athleteCount: number;
-  name: string
+  name: string;
   series: SeriesData[];
+  totalAthletes: number;
+  totalMedals: number;
 }
 
-export interface SeriesData {
+interface SeriesData {
   name: string;  // Année sous forme de string
   value: number; // Nombre de médailles
 }

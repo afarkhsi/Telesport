@@ -3,7 +3,7 @@ import { OlympicService } from '../core/services/olympic.service';
 import { Olympic } from '../core/models/Olympic';
 import { take } from 'rxjs';
 import { LegendPosition } from '@swimlane/ngx-charts';
-import { CountryMedals } from '../core/models/CountryMedals';
+import { Countrydetails } from '../core/models/CountryDetails';
 import { Router } from '@angular/router';
 
 
@@ -25,7 +25,7 @@ export class OlympicComponent implements OnInit {
   tooltipData: any;
 
   // Tableau ayant pour résultat les données traitées et récupérées
-  chartData: CountryMedals[] = [];
+  chartData: Countrydetails[] = [];
 
   // Fonction pour traiter les données
   countryMedalsData(): void {

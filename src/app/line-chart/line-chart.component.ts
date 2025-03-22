@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OlympicService } from '../core/services/olympic.service';
 import { Olympic } from '../core/models/Olympic';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Countrydetails } from '../core/models/CountryDetails';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class LineChartComponent implements OnInit {
   loading: boolean = false;
   error: string = '';
   olympic$: Olympic[] = [];
+  countryData : Partial <Participation>[] = []
   olympicId: number | null = null;
   isLoading = false;
   animationState = 'inactive'; 
@@ -28,56 +30,8 @@ export class LineChartComponent implements OnInit {
     // Tableau ayant pour résultat les données traitées et récupérées
   chartData: Partial <Participation>[] = [];
 
-  chateData = [
-    {
-      name: 'medailles', // Nom de la ville
-      series: [
-        { 
-          name: '2016', 
-          value: 28 
-        },
-        { 
-          name: '2012', 
-          value: 30 
-        },
-        { 
-          name: '2020', 
-          value: 34 
-        }
 
-         // Données pour cette année
-      ]
-    },
-    {
-      name: 'Paris', // Nom de la ville
-      series: [
-        { 
-          name: '2016', 
-          value: 8 
-        },
-        { 
-          name: '2012', 
-          value: 90 
-        },
-        { 
-          name: '2020', 
-          value: 44 
-        }
-         // Données pour cette année
-      ]
-    }
-  ];
 
-  
-
-  // participationData(): void {
-  //   this.chartData = this.olympics.map(country => {
-  //     // Somme des médailles par pays
-  //     const totalMedals = country.participations.reduce((sum, participation) => sum + participation.medalsCount, 0);
-  //     return { name: country.country, value: totalMedals };
-  //   });
-  //   console.log("Nombre de medails par pays:", this.chartData);
-  // }
 
   colorScheme = {
     name: 'customScheme',      // Le nom de ton schéma de couleurs
@@ -131,9 +85,15 @@ export class LineChartComponent implements OnInit {
             }))
           }
         ];
-        console.log("Tableau partcipation du pays:", this.chartData);
 
-        console.log("V2:", this.chateData);
+        this.countryData = [
+          {
+            totalAthletes: this.olympic$[0].participations.reduce((sum, participation) => sum + participation.athleteCount, 0),
+            totalMedals: this.olympic$[0].participations.reduce((sum, participation) => sum + participation.medalsCount, 0)
+          }
+        ]
+      
+        console.log("Total medailles et athletes: ", this.countryData);
       },
     });
   }

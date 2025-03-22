@@ -7,3 +7,38 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &_contents_title{
+      text-align: center;
+      background-color: #04838f;
+      border-radius: 10px;
+      color: white;
+      padding: 10px 0px;
+      font-weight: 400;
+  }
+  &_contents_subtitle-chart{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      text-align: center;
+      &_details{
+          border: 3px solid #04838f;
+          padding: 5px;
+          border-radius: 10px;
+          h2{
+              font-size: 15px;
+              text-wrap: wrap;
+              font-weight: 400;
+              margin: 5px 0px 5px 0px;
+          }
+          span{
+              font-weight: 600;
+          }
+      }
+  }
+}

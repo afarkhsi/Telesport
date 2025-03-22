@@ -1,20 +1,37 @@
 <section>
-    <p>line-chart works!</p>
+      <!-- Affichage de l'état de chargement -->
+  <div *ngIf="loading">Chargement des données...</div>
 
-    <!-- Affichage de l'état de chargement -->
-    <div *ngIf="loading">Chargement des données...</div>
-
-    <!-- Affichage de l'erreur -->
-    <div *ngIf="error" class="error">
+  <!-- Affichage de l'erreur -->
+  <div *ngIf="error" class="error">
     <p>{{ error }}</p>
-    </div>
+  </div>
 
+  <!-- Affichage des données quand elles sont chargées -->
+  <div class="wrapper_contents">
+    <h1 class="wrapper_contents_title">Medals per country</h1>
+    <div class="wrapper_contents_subtitle-chart">
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Number of entries</h2>
+        <span >{{olympic$[0].participations.length}}</span>
+      </div>
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Total number medals</h2>
+        <span>{{countryData[0].totalMedals}}</span>
+      </div>
+
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Total number of athletes</h2>
+        <span>{{countryData[0].totalAthletes}}</span>
+      </div>
+    </div>
+  </div>
 
     <div>
     <h1>L'id de ce pays est le : {{ olympicId }}</h1>
     <div *ngIf="olympic$.length > 0">
         <h2> {{ olympic$[0].country}} </h2>
-        <h3>{{chartData[0].year}}</h3>
+        <h3>{{countryData[0].totalAthletes}}</h3>
         <ul>
         <li *ngFor="let participation of olympic$[0].participations">
             {{ participation.id }}, {{ participation.year }}, {{ participation.city }}, {{ participation.medalsCount }},  {{ participation.athleteCount }}
