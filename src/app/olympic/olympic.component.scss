@@ -1,0 +1,51 @@
+.custom-tooltip {
+    position: absolute;
+    background-color: #04838f;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    font-size: 14px;
+    z-index: 10;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+.custom-tooltip div {
+    margin-bottom: 5px;
+}
+  
+.custom-tooltip div::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #178693 transparent transparent transparent;
+}
+.icon {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 1px;
+}
+
+.icon::before {
+    content: "🏅"; /* Icône clé pour simuler la médaille */
+    font-size: 16px;
+}
+
+.chart{
+width: 100%;
+}
+
+.wrapper_contents_subtitle-chart{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}

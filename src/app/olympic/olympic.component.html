@@ -1,0 +1,55 @@
+
+<section class="wrapper">
+  <!-- Affichage de l'état de chargement -->
+  <div *ngIf="loading">Chargement des données...</div>
+
+  <!-- Affichage de l'erreur -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Affichage des données quand elles sont chargées -->
+  <div class="wrapper_contents">
+    <h1 class="wrapper_contents_title">Medals per country</h1>
+    <div class="wrapper_contents_subtitle-chart">
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Number of JOs</h2>
+        <span>{{olympics[0]?.participations?.length}}</span>
+      </div>
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Number of countries</h2>
+        <span>{{chartData.length}}</span>
+      </div>
+    </div>
+  </div>
+ 
+
+  <!-- Message quand il n'y a pas de données -->
+  <div *ngIf="!loading && !error && olympics.length === 0">
+    <p>Aucune donnée à afficher.</p>
+  </div>
+
+
+  <div *ngIf="tooltipVisible" class="custom-tooltip" [style.top.px]="tooltipPosition?.top" [style.left.px]="tooltipPosition?.left">
+    <div>{{ tooltipData?.name }}</div>
+    <div class="icon">{{ tooltipData?.value | number }}</div>
+  </div>
+
+  <div class="wrapper_chart">
+    <ngx-charts-pie-chart
+      [view]="[800, 400]"
+      [results]="chartData"
+      [gradient]="false"
+      [legend]="false"
+      [explodeSlices]="false"
+      [doughnut]="false"
+      [labels]="true"
+      [gradient]="true"
+      [tooltipDisabled]="true"
+      (activate)="onActivate($event)"
+      (deactivate)="onDeactivate()"
+      (mousemove)="onMouseMove($event)"
+      (select)="onClickCountry($event)">
+    </ngx-charts-pie-chart>
+  </div>
+</section>

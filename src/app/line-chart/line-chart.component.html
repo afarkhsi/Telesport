@@ -1,0 +1,54 @@
+<section class="wrapper">
+    <!-- Affichage de l'état de chargement -->
+  <div *ngIf="loading">Chargement des données...</div>
+
+  <!-- Affichage de l'erreur -->
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <div>
+    <button routerLink="/">Go Back</button>
+  </div>
+
+  <!-- Affichage des données quand elles sont chargées -->
+  <div class="wrapper_contents">
+    <h1 class="wrapper_contents_title">{{olympic$[0]?.country}}</h1>
+    <div class="wrapper_contents_subtitle-chart">
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Number of entries</h2>
+        <span >{{olympic$[0]?.participations?.length}}</span>
+      </div>
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Total number medals</h2>
+        <span>{{countryData[0]?.totalMedals}}</span>
+      </div>
+
+      <div class="wrapper_contents_subtitle-chart_details">
+        <h2>Total number of athletes</h2>
+        <span>{{countryData[0]?.totalAthletes}}</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="chart_contents">
+    <ngx-charts-line-chart
+      [view]="[800, 400]"
+      [animations]="true"
+      [customColors]="colorScheme"
+      [results]="chartData"
+      [legend]="false"
+      [xAxis]="true"
+      [yAxis]="true"
+      [yScaleMin]="0" 
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxisLabel]="'Année'"
+      [yAxisLabel]="'Médailles'"
+      [autoScale]="false">
+    </ngx-charts-line-chart> 
+  </div>
+
+</section>
+
