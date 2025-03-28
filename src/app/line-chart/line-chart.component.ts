@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Participation } from '../core/models/Participation';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { OlympicService } from '../core/services/olympic.service';
 import { Olympic } from '../core/models/Olympic';
 import { Subject, takeUntil } from 'rxjs';
@@ -50,11 +50,11 @@ export class LineChartComponent implements OnInit {
         this.error = error;  // Met à jour le message d'erreur
     });
 
-    console.log('ngOnInit - Chargement des données...');
+    // console.log('ngOnInit - Chargement des données...');
     this.loadOlympicDataById();
   }
   
-    // Desabonnement aux subscribe pour eviter les fuites de mémoire
+  // Desabonnement aux subscribe pour eviter les fuites de mémoire
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
@@ -70,19 +70,17 @@ export class LineChartComponent implements OnInit {
         next: () => {
           // On recupère l'ID depuis notre url
           this.olympicId = +this.route.snapshot.params['id'];
-          console.log("ID de l'url:", this.olympicId);
+          // console.log("ID de l'url:", this.olympicId);
     
           const olympic = this.olympicService.getOlympicById(this.olympicId);
     
           if (!olympic) {
-            console.warn(`Pas de données à cet id: ${this.olympicId}`);
+            console.error(`Pas de données à cet id: ${this.olympicId}`);
             this.isLoading = false;
-          } else {
-            console.log("Données existantes pour cet id:", olympic);
           }
     
           this.olympic$ = olympic ? [olympic] : [];
-          console.log("this olympic country:", this.olympic$[0].country);
+          // console.log("this olympic country:", this.olympic$[0].country);
           this.isLoading = false;
 
           //Traitement des données pour les ajouter au tableau des participation pour notre chart
@@ -102,13 +100,10 @@ export class LineChartComponent implements OnInit {
               totalMedals: this.olympic$[0].participations.reduce((sum, participation) => sum + participation.medalsCount, 0)
             }
           ]
-        
-          console.log("Total medailles et athletes: ", this.countryData);
+          // console.log("Total medailles et athletes: ", this.countryData);
           this.isLoading = false;
         },
       }
     );
   }
-
-
 }

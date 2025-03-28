@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { catchError, tap, finalize } from 'rxjs/operators';
 import { Olympic } from '../models/Olympic';
 import { Router } from '@angular/router';
@@ -31,7 +31,7 @@ export class OlympicService {
         return of([]);
       }),
       finalize(() => {
-        console.log('Chargement des données terminé.');
+        // console.log('Chargement des données terminé.');
         this.loading.next(false);
       })
       

@@ -33,11 +33,10 @@ export class OlympicComponent implements OnInit {
   // Fonction pour traiter les données
   countryMedalsData(): void {
     this.chartData = this.olympics.map(country => {
-      // Somme des médailles par pays
       const totalMedals = country.participations.reduce((sum, participation) => sum + participation.medalsCount, 0);
       return { name: country.country, value: totalMedals, extra: {id: country.id} };
     });
-    console.log("Nombre de medails par pays:", this.chartData);
+    // console.log("Nombre de medails par pays:", this.chartData);
     this.chartData = this.chartData.filter(country => !isNaN(country.value));
 
   }
@@ -65,9 +64,8 @@ export class OlympicComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (data) => {
-          this.olympics = data ;  // Si tout se passe bien, on met les données dans la variable 
-          //olympics
-          console.log('affiche la donnée:', this.olympics)
+          this.olympics = data ;
+          // console.log('affiche la donnée:', this.olympics)
           this.countryMedalsData();
         }
       );
@@ -82,12 +80,12 @@ export class OlympicComponent implements OnInit {
   onActivate(event: EventData): void {
     this.tooltipVisible = true;
     this.tooltipData = event.series;
-    console.log('event:', event)
+    // console.log('event:', event)
 
     // Vérifie la structure de l'objet `event` et récupère les coordonnées correctement
     if (event && event.entries && event.entries.length > 0) {
-      const item = event.entries[0];  // On prend le premier élément (devrait être un seul)
-      this.tooltipData = item;  // 'value' contient les données du segment (name, value)
+      const item = event.entries[0];  
+      this.tooltipData = item; 
     }
   
     // Récupère la position de l'événement pour le tooltip
@@ -107,15 +105,14 @@ export class OlympicComponent implements OnInit {
   onMouseMove(event: MouseEvent): void {
     if (this.tooltipVisible) {
       this.tooltipPosition = {
-        top: event.clientY - 70,  // Décalage de 10px vers le bas
-        left: event.clientX - 40  // Décalage de 10px vers la droite
+        top: event.clientY - 70,
+        left: event.clientX - 40 
       };
     }
   }
 
   onClickCountry(event: { name: string; value: number; extra: { id: number } }): void {
-    console.log("Événement sélectionné :", event);
-    
+    // console.log("Événement sélectionné :", event);
     if (event && event.extra && event.extra.id) {
       this.router.navigateByUrl(`/country/${event.extra.id}`);
     } else {
