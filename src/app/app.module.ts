@@ -11,10 +11,25 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CountryPageComponent } from './pages/country-page/country-page.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, HomeComponent, OlympicComponent, LineChartComponent, CountryPageComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgxChartsModule, BrowserAnimationsModule],
+  declarations: [
+    AppComponent, 
+    NotFoundComponent, 
+    HomeComponent, 
+    OlympicComponent, 
+    LineChartComponent, 
+    CountryPageComponent,
+    HeaderComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule, 
+    HttpClientModule, 
+    NgxChartsModule, 
+    BrowserAnimationsModule
+  ],
   providers: [OlympicService, provideAnimations()],
   bootstrap: [AppComponent],
 })

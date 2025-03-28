@@ -43,3 +43,9 @@
 .chart{
 width: 100%;
 }
+
+.wrapper_contents_subtitle-chart{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}

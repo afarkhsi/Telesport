@@ -1,0 +1,16 @@
+.wrapper_contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+    &_title{
+        max-width: 200px;
+        width: 100%;
+    }
+    &_subtitle-chart{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+    }
+}

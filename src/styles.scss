@@ -3,15 +3,24 @@
     font-family: Roboto, Helvetica, sans-serif;
   }
 
-body {
+html {
   margin: 0;
-  padding: 0;
+  padding: 0; 
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body {
+  margin: 0; 
+  padding: 0;      
+  height: 100vh;     
 }
 
 .wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   &_contents_title{
       text-align: center;
@@ -22,9 +31,6 @@ body {
       font-weight: 400;
   }
   &_contents_subtitle-chart{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
       text-align: center;
       &_details{
           border: 3px solid #04838f;
@@ -40,5 +46,26 @@ body {
               font-weight: 600;
           }
       }
+  }
+}
+
+button {
+  border: 3px solid #000000;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100px;
+  font-size: 18px;
+  color: white;
+  background-color: #000000;
+  position: absolute;
+  left: 5%;
+  top: 15%;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  &:hover{
+      color: rgb(255, 255, 255);
+      background-color: #a40202;
+      border:3px solid #a40202;
+      transform: scale(1.05);
   }
 }

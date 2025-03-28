@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, tap, finalize } from 'rxjs/operators';
 import { Olympic } from '../models/Olympic';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,9 @@ export class OlympicService {
   private loading = new BehaviorSubject<boolean>(false)
   private error = new BehaviorSubject<string>('');
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private router: Router,
+  ) {}
 
   loadInitialData() {
     this.loading.next(true); 
@@ -52,7 +55,8 @@ export class OlympicService {
   getOlympicById(olympicId: number): Olympic | undefined {
     const foundOlympic = this.olympics$.getValue().find(o => o.id === olympicId);
 
-    if(!foundOlympic) {
+    if(!foundOlympic) {    
+      this.router.navigate(['/error']);
       throw new Error('Pays ciblé non trouvé')
     }
     return foundOlympic

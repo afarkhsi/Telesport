@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
 import { OlympicService } from './core/services/olympic.service';
 
 @Component({
@@ -10,13 +9,6 @@ import { OlympicService } from './core/services/olympic.service';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private olympicService: OlympicService) {}
-
   ngOnInit(): void {
-    // this.olympicService.loadInitialData().pipe(take(1)).subscribe(
-    //   (olympics) => {
-    //     console.log('Valeur actuelle des olympics depuis appcomponent:', olympics); // Affiche la valeur dans la console
-    //   }
-    // );
   }
 }

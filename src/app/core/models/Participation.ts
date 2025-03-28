@@ -1,14 +1,5 @@
-// TODO: create here a typescript interface for a participation
-/*
-example of participation:
-{
-    id: 1,
-    year: 2012,
-    city: "Londres",
-    medalsCount: 28,
-    athleteCount: 372
-}
-*/
+import { SeriesData } from "./SeriesData";
+
 export interface Participation {
   id: number;
   year: number;
@@ -21,7 +12,4 @@ export interface Participation {
   totalMedals: number;
 }
 
-interface SeriesData {
-  name: string;  // Année sous forme de string
-  value: number; // Nombre de médailles
-}
+

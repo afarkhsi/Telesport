@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { OlympicService } from '../core/services/olympic.service';
 import { Olympic } from '../core/models/Olympic';
-import { take } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { LegendPosition } from '@swimlane/ngx-charts';
 import { Countrydetails } from '../core/models/CountryDetails';
 import { Router } from '@angular/router';
+import { EventData } from '../core/models/EventData';
+import { Tooltip } from '../core/models/Tooltip';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class OlympicComponent implements OnInit {
   legendPosition: LegendPosition = LegendPosition.Below;
   tooltipPosition: { top: number, left: number } | null = null;
   tooltipVisible = false;
-  tooltipData: any;
+  tooltipData: Tooltip | null = null;
+  private unsubscribe$ = new Subject<void>();  
 
   // Tableau ayant pour résultat les données traitées et récupérées
   chartData: Countrydetails[] = [];
@@ -45,31 +48,41 @@ export class OlympicComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.olympicService.getLoadingState().subscribe((loading) => {
-      this.loading = loading;  // Met à jour l'état de chargement
+    this.olympicService.getLoadingState()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((loading) => {
+        this.loading = loading;  // Met à jour l'état de chargement
     });
     
-    this.olympicService.getErrorState().subscribe((error) => {
-      this.error = error;  // Met à jour le message d'erreur
+    this.olympicService.getErrorState()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((error) => {
+        this.error = error;  // Met à jour le message d'erreur
     });
 
-    this.olympicService!.loadInitialData().pipe(take(1)).subscribe(
-      (data) => {
-        this.olympics = data ;  // Si tout se passe bien, on met les données dans la variable 
-        //olympics
-        console.log('affiche la donnée:', this.olympics)
-        this.countryMedalsData();
-      }
-    );
+    this.olympicService!.loadInitialData()
+      .pipe(take(1))
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (data) => {
+          this.olympics = data ;  // Si tout se passe bien, on met les données dans la variable 
+          //olympics
+          console.log('affiche la donnée:', this.olympics)
+          this.countryMedalsData();
+        }
+      );
   }
   
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
   
-  // Méthode appelée lors de l'activation d'un élément (lorsqu'on survole)
   // Capture la position du tooltip
-  onActivate(event: any): void {
+  onActivate(event: EventData): void {
     this.tooltipVisible = true;
     this.tooltipData = event.series;
-    // console.log('event:', event)
+    console.log('event:', event)
 
     // Vérifie la structure de l'objet `event` et récupère les coordonnées correctement
     if (event && event.entries && event.entries.length > 0) {
@@ -84,9 +97,6 @@ export class OlympicComponent implements OnInit {
         left: event.event.offsetX
       };
     }
-
-    // console.log('totltip:', this.tooltipData)
-
   }
 
   // Cacher le tooltip lorsqu'on quitte l'élément

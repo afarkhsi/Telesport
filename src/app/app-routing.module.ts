@@ -14,8 +14,12 @@ const routes: Routes = [
     component: CountryPageComponent,
   },
   {
-    path: '**', // wildcard
+    path: 'error',
     component: NotFoundComponent,
+  },
+  {
+    path: '**', // wildcard
+    redirectTo: '/error'
   }
 ];
 
