@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap, finalize } from 'rxjs/operators';
 import { Olympic } from '../models/Olympic';
 import { Router } from '@angular/router';
@@ -26,12 +26,11 @@ export class OlympicService {
       tap((value) => 
         this.olympics$.next(value)),
       catchError((error) => {
-        // TODO: improve error handling
         console.error('Une erreur est survenue lors du chargement des données:', error);
-        return [];
+        this.error.next('Une erreur est survenue lors du chargement des données.');
+        return of([]);
       }),
       finalize(() => {
-        // End loading state and let the user know something went wrong
         console.log('Chargement des données terminé.');
         this.loading.next(false);
       })
