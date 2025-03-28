@@ -51,6 +51,7 @@ body {
 
 button {
   border: 3px solid #000000;
+  text-align: center;
   padding: 5px;
   border-radius: 5px;
   width: 100px;
@@ -58,8 +59,8 @@ button {
   color: white;
   background-color: #000000;
   position: absolute;
-  left: 5%;
-  top: 15%;
+  right: 5%;
+  top: 2%;
   cursor: pointer;
   transition: all 0.4s ease;
   &:hover{
@@ -67,5 +68,45 @@ button {
       background-color: #a40202;
       border:3px solid #a40202;
       transform: scale(1.05);
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .header {
+    font-size: 14px;
+  }
+
+  button {
+      width: 70px;
+      font-size: 14px;
+      top: 1.5%;
+  }
+  .wrapper {
+    &_contents{
+      &_title{
+        font-size: 18px;
+      }
+    }    
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .header {
+    font-size: 12px;
+  }
+  button {
+    top: 1%;
+  }
+  .wrapper {
+    &_contents{
+      width: 100%;
+      &_title {
+        margin: 15px 15px;
+      }
+      &_subtitle-chart{
+        grid-template-columns: 1fr !important;
+        margin: 0px 15px;
+      }
+    }    
   }
 }

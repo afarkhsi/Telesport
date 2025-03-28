@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Participation } from '../core/models/Participation';
 import { ActivatedRoute} from '@angular/router';
 import { OlympicService } from '../core/services/olympic.service';
@@ -14,6 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 })
 
 export class LineChartComponent implements OnInit {
+  view: [number, number] = [800, 400];
   loading: boolean = false;
   error: string = '';
   olympic$: Olympic[] = [];
@@ -105,5 +106,21 @@ export class LineChartComponent implements OnInit {
         },
       }
     );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.updateChartSize();
+  }
+
+  updateChartSize() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+      this.view = [screenWidth * 0.9, 300];
+    } else if (screenWidth < 400){
+      this.view = [screenWidth * 0.5, 300];
+    } else {
+      this.view = [800, 400]; // Taille normale sur desktop
+    }
   }
 }

@@ -2,28 +2,22 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 
-Don't forget to install your node_modules before starting (`npm install`).
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
 
-## Development server
+![banner readme](./src/assets/banner.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Description:
 
-## Build
+Télésport est une chaine télévisée sportive qui a pour projet de rendre son site intéractive pour les jeux olympiques.
+Dans le cadre de ce projet de developpement, la direction de Télésport a fait part de sa volonté de vouloir afficher les données des pays participants dans une page de dashbord puis dans une autre page détaillant les statistiques propres à chaque pays.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Where to start
-
-As you can see, an architecture has already been defined for the project. It is just a suggestion, you can choose to use your own. The predefined architecture includes (in addition to the default angular architecture) the following:
-
-- `components` folder: contains every reusable components
-- `pages` folder: contains components used for routing
-- `core` folder: contains the business logic (`services` and `models` folders)
-
-I suggest you to start by understanding this starter code. Pay an extra attention to the `app-routing.module.ts` and the `olympic.service.ts`.
-
-Once mastered, you should continue by creating the typescript interfaces inside the `models` folder. As you can see I already created two files corresponding to the data included inside the `olympic.json`. With your interfaces, improve the code by replacing every `any` by the corresponding interface.
-
-You're now ready to implement the requested features.
-
-Good luck!
+- Forker puis cloner le repository à l'adresse suivante :
+  `git clone https://github.com/afarkhsi/Telesport.git`
+- La commande `npm install` vous permettra d'installer les dépendances liée à ce repository
+- La commande `ng serve` vous permettra par la suite de lancer l'application.
+- Télésport est lancée sur `http://localhost:4200/`

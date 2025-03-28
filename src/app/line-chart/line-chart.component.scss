@@ -1,4 +1,4 @@
-.wrapper_contents {
+.lineChart_contents {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,3 +14,28 @@
         gap: 1rem;
     }
 }
+
+@media screen and (max-width: 599px) {
+    .lineChart {
+      &_contents{
+        &_subtitle-chart{
+            text-align: center;
+            grid-template-columns: 1fr !important;
+            &_details{
+                border: 3px solid #04838f;
+                padding: 5px;
+                border-radius: 10px;
+                h2{
+                    font-size: 15px;
+                    text-wrap: wrap;
+                    font-weight: 400;
+                    margin: 5px 0px 5px 0px;
+                }
+                span{
+                    font-weight: 600;
+                }
+            }
+        }
+      }    
+    }
+  }

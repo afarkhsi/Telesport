@@ -1,4 +1,4 @@
-<section class="wrapper">
+<section class="wrapper lineChart">
     <!-- Affichage de l'état de chargement -->
   <div *ngIf="loading">Chargement des données...</div>
 
@@ -12,19 +12,19 @@
   </div>
 
   <!-- Affichage des données quand elles sont chargées -->
-  <div class="wrapper_contents">
-    <h1 class="wrapper_contents_title">{{olympic$[0]?.country}}</h1>
-    <div class="wrapper_contents_subtitle-chart">
-      <div class="wrapper_contents_subtitle-chart_details">
+  <div class="wrapper_contents lineChart_contents">
+    <h1 class="wrapper_contents_title lineChart_contents_title">{{olympic$[0]?.country}}</h1>
+    <div class="wrapper_contents_subtitle-chart lineChart_contents_subtitle-chart">
+      <div class="wrapper_contents_subtitle-chart_details lineChart_contents_subtitle-chart_details">
         <h2>Number of entries</h2>
         <span >{{olympic$[0]?.participations?.length}}</span>
       </div>
-      <div class="wrapper_contents_subtitle-chart_details">
+      <div class="wrapper_contents_subtitle-chart_details lineChart_contents_subtitle-chart_details">
         <h2>Total number medals</h2>
         <span>{{countryData[0]?.totalMedals}}</span>
       </div>
 
-      <div class="wrapper_contents_subtitle-chart_details">
+      <div class="wrapper_contents_subtitle-chart_details lineChart_contents_subtitle-chart_details">
         <h2>Total number of athletes</h2>
         <span>{{countryData[0]?.totalAthletes}}</span>
       </div>
@@ -34,7 +34,7 @@
 
   <div class="chart_contents">
     <ngx-charts-line-chart
-      [view]="[800, 400]"
+      [view]="view"
       [animations]="true"
       [customColors]="colorScheme"
       [results]="chartData"
@@ -43,8 +43,8 @@
       [yAxis]="true"
       [yScaleMin]="0" 
       [showXAxisLabel]="true"
-      [showYAxisLabel]="true"
-      [xAxisLabel]="'Année'"
+      [showYAxisLabel]="false"
+      [xAxisLabel]="'Dates'"
       [yAxisLabel]="'Médailles'"
       [autoScale]="false">
     </ngx-charts-line-chart> 

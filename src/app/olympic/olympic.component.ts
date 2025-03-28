@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { OlympicService } from '../core/services/olympic.service';
 import { Olympic } from '../core/models/Olympic';
 import { Subject, take, takeUntil } from 'rxjs';
@@ -17,7 +17,7 @@ import { Tooltip } from '../core/models/Tooltip';
 })
 
 export class OlympicComponent implements OnInit {
-
+  view: [number, number] = [800, 400];
   olympics: Olympic[] = [];
   loading: boolean = false;
   error: string = '';
@@ -117,6 +117,20 @@ export class OlympicComponent implements OnInit {
       this.router.navigateByUrl(`/country/${event.extra.id}`);
     } else {
       throw new Error("ID du pays non défini")
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.updateChartSize();
+  }
+
+  updateChartSize() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+      this.view = [screenWidth * 0.9, 300];
+    } else {
+      this.view = [800, 400]; // Taille normale sur desktop
     }
   }
 }
